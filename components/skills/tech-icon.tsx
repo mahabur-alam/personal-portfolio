@@ -1,16 +1,47 @@
 import {
   AppWindow,
   ArrowLeftRight,
+  Axis3d,
+  Blend,
+  BookOpen,
   Boxes,
   Braces,
   ChartColumn,
+  ChartScatter,
+  ClipboardCheck,
+  Combine,
+  CopyPlus,
+  Cpu,
   Database,
   DatabaseSearch,
+  Eye,
+  Feather,
+  FileSearch,
+  FlaskConical,
+  Gauge,
+  Grid3x3,
   Layers,
+  ListChecks,
+  MessageCircleQuestionMark,
+  Microscope,
+  MonitorSmartphone,
   Network,
+  PencilRuler,
+  Route,
+  ScanSearch,
+  ScanText,
   Server,
+  Shapes,
+  SlidersHorizontal,
   SquareCode,
+  SquareStack,
+  Tags,
+  TestTubes,
+  Timer,
+  Waypoints,
   Workflow,
+  Wrench,
+  Zap,
   type LucideIcon,
 } from "lucide-react";
 import type { ConceptGlyph, TechIcon as TechIconName } from "@/content/skills";
@@ -108,6 +139,37 @@ const GLYPHS: Record<ConceptGlyph, LucideIcon> = {
   database: Database, // Database Design
   schema: Network, // Data Modeling: entities + relations
   chart: ChartColumn, // BI / visualization tools without a Simple Icons logo (Tableau)
+  scatter: ChartScatter, // Machine Learning
+  graph: Waypoints, // Deep Learning
+  evaluate: ClipboardCheck, // Model Evaluation
+  gauge: Gauge, // Model Optimization
+  eye: Eye, // Computer Vision
+  tags: Tags, // Image Classification
+  detect: ScanSearch, // Object Detection
+  shapes: Shapes, // Image Segmentation
+  adjust: SlidersHorizontal, // Image Processing
+  augment: CopyPlus, // Data Augmentation
+  patches: Grid3x3, // Vision Transformers
+  stack: SquareStack, // CNNs
+  fast: Zap, // Efficient Vision Models
+  chip: Cpu, // Edge AI
+  "scan-text": ScanText, // Vision-Language Models
+  combine: Combine, // Multimodal AI
+  question: MessageCircleQuestionMark, // Visual Question Answering
+  route: Route, // Vision-Language Reasoning
+  blend: Blend, // Multimodal Learning
+  embedding: Axis3d, // Visual Representation Learning
+  light: Feather, // Efficient VLMs
+  flask: FlaskConical, // AI Research
+  microscope: Microscope, // Computer Vision Research
+  "test-tubes": TestTubes, // Deep Learning Research
+  timer: Timer, // Model Efficiency
+  checklist: ListChecks, // AI Evaluation
+  design: PencilRuler, // Experimental Design
+  book: BookOpen, // Literature Review
+  wrench: Wrench, // Research Prototyping
+  "file-search": FileSearch, // Paper Analysis
+  responsive: MonitorSmartphone, // Responsive Web Design
 };
 
 /** Generic UI glyph for a concept skill (e.g. Microservices), sized to match `TechIcon`. */

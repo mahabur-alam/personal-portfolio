@@ -45,7 +45,38 @@ export type ConceptGlyph =
   | "query"
   | "database"
   | "schema"
-  | "chart";
+  | "chart"
+  | "scatter"
+  | "graph"
+  | "evaluate"
+  | "gauge"
+  | "eye"
+  | "tags"
+  | "detect"
+  | "shapes"
+  | "adjust"
+  | "augment"
+  | "patches"
+  | "stack"
+  | "fast"
+  | "chip"
+  | "scan-text"
+  | "combine"
+  | "question"
+  | "route"
+  | "blend"
+  | "embedding"
+  | "light"
+  | "flask"
+  | "microscope"
+  | "test-tubes"
+  | "timer"
+  | "checklist"
+  | "design"
+  | "book"
+  | "wrench"
+  | "file-search"
+  | "responsive";
 
 export type Skill = {
   name: string;
@@ -96,15 +127,15 @@ export const skillCategories: SkillCategory[] = [
       { name: "NumPy", icon: "numpy" },
       { name: "Pandas", icon: "pandas" },
       { name: "Scikit-learn", icon: "scikitlearn" },
-      { name: "Machine Learning" },
-      { name: "Deep Learning", featured: true },
+      { name: "Machine Learning", glyph: "scatter" },
+      { name: "Deep Learning", featured: true, glyph: "graph" },
       { name: "PyTorch", icon: "pytorch", featured: true },
       { name: "Hugging Face", icon: "huggingface" },
       { name: "Jupyter", icon: "jupyter" },
       { name: "Google Colab", icon: "googlecolab" },
       { name: "Kaggle", icon: "kaggle" },
-      { name: "Model Evaluation" },
-      { name: "Model Optimization" },
+      { name: "Model Evaluation", glyph: "evaluate" },
+      { name: "Model Optimization", glyph: "gauge" },
     ],
   },
   {
@@ -115,18 +146,18 @@ export const skillCategories: SkillCategory[] = [
     description:
       "My primary AI focus: models that classify, detect and understand images, with an eye on efficiency and edge deployment.",
     skills: [
-      { name: "Computer Vision", featured: true },
-      { name: "Image Classification" },
-      { name: "Object Detection" },
-      { name: "Image Segmentation" },
-      { name: "Image Processing" },
-      { name: "Data Augmentation" },
-      { name: "Vision Transformers", featured: true },
-      { name: "CNNs" },
+      { name: "Computer Vision", featured: true, glyph: "eye" },
+      { name: "Image Classification", glyph: "tags" },
+      { name: "Object Detection", glyph: "detect" },
+      { name: "Image Segmentation", glyph: "shapes" },
+      { name: "Image Processing", glyph: "adjust" },
+      { name: "Data Augmentation", glyph: "augment" },
+      { name: "Vision Transformers", featured: true, glyph: "patches" },
+      { name: "CNNs", glyph: "stack" },
       { name: "OpenCV", icon: "opencv" },
       { name: "YOLO (Ultralytics)", icon: "ultralytics" },
-      { name: "Efficient Vision Models" },
-      { name: "Edge AI" },
+      { name: "Efficient Vision Models", glyph: "fast" },
+      { name: "Edge AI", glyph: "chip" },
     ],
   },
   {
@@ -136,13 +167,13 @@ export const skillCategories: SkillCategory[] = [
     tier: "emerging",
     description: "Where vision meets language: how models ground text in what they see.",
     skills: [
-      { name: "Vision-Language Models", featured: true },
-      { name: "Multimodal AI", featured: true },
-      { name: "Visual Question Answering" },
-      { name: "Vision-Language Reasoning" },
-      { name: "Multimodal Learning" },
-      { name: "Visual Representation Learning" },
-      { name: "Efficient VLMs" },
+      { name: "Vision-Language Models", featured: true, glyph: "scan-text" },
+      { name: "Multimodal AI", featured: true, glyph: "combine" },
+      { name: "Visual Question Answering", glyph: "question" },
+      { name: "Vision-Language Reasoning", glyph: "route" },
+      { name: "Multimodal Learning", glyph: "blend" },
+      { name: "Visual Representation Learning", glyph: "embedding" },
+      { name: "Efficient VLMs", glyph: "light" },
     ],
   },
   {
@@ -152,15 +183,15 @@ export const skillCategories: SkillCategory[] = [
     tier: "emerging",
     description: "Reading, reproducing and testing ideas, with a focus on model efficiency.",
     skills: [
-      { name: "AI Research" },
-      { name: "Computer Vision Research" },
-      { name: "Deep Learning Research" },
-      { name: "Model Efficiency" },
-      { name: "AI Evaluation" },
-      { name: "Experimental Design" },
-      { name: "Literature Review" },
-      { name: "Research Prototyping" },
-      { name: "Paper Analysis" },
+      { name: "AI Research", glyph: "flask" },
+      { name: "Computer Vision Research", glyph: "microscope" },
+      { name: "Deep Learning Research", glyph: "test-tubes" },
+      { name: "Model Efficiency", glyph: "timer" },
+      { name: "AI Evaluation", glyph: "checklist" },
+      { name: "Experimental Design", glyph: "design" },
+      { name: "Literature Review", glyph: "book" },
+      { name: "Research Prototyping", glyph: "wrench" },
+      { name: "Paper Analysis", glyph: "file-search" },
     ],
   },
   {
@@ -224,7 +255,7 @@ export const skillCategories: SkillCategory[] = [
       { name: "Next.js", icon: "nextdotjs" },
       { name: "Tailwind CSS", icon: "tailwindcss" },
       { name: "shadcn/ui", icon: "shadcnui" },
-      { name: "Responsive Web Design" },
+      { name: "Responsive Web Design", glyph: "responsive" },
     ],
   },
   */
