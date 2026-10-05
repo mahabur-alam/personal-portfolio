@@ -17,18 +17,42 @@ export type TechIcon =
   | "pandas"
   | "scikitlearn"
   | "pytorch"
+  | "huggingface"
+  | "jupyter"
+  | "googlecolab"
+  | "kaggle"
   | "opencv"
+  | "ultralytics"
   | "git"
   | "github"
   | "linux"
   | "docker"
+  | "postman"
   | "vercel"
-  | "claudecode";
+  | "claudecode"
+  | "ollama";
+
+/** Generic lucide glyphs for concept skills (`ConceptIcon` in tech-icon.tsx) — never brand logos. */
+export type ConceptGlyph =
+  | "server"
+  | "boxes"
+  | "exchange"
+  | "braces"
+  | "layers"
+  | "app-window"
+  | "pipeline"
+  | "editor"
+  | "query"
+  | "database"
+  | "schema"
+  | "chart";
 
 export type Skill = {
   name: string;
-  /** Only real technologies get a logo; concepts stay text-only. */
+  /** Only real technologies get a logo. */
   icon?: TechIcon;
+  /** Optional generic glyph for a concept skill (no logo exists for concepts). */
+  glyph?: ConceptGlyph;
   /** Stronger visual treatment. Prominence only — never a proficiency rating. */
   featured?: boolean;
 };
@@ -36,8 +60,19 @@ export type Skill = {
 /** primary = strongest · secondary = supporting · emerging = research direction (CLAUDE.md §9). */
 export type SkillTier = "primary" | "secondary" | "emerging";
 
+export type SkillCategoryId =
+  | "ai-ml"
+  | "computer-vision"
+  | "multimodal"
+  | "research"
+  | "software-engineering"
+  | "backend"
+  | "data"
+  | "frontend"
+  | "tools";
+
 export type SkillCategory = {
-  id: string;
+  id: SkillCategoryId;
   title: string;
   /** Neutral, visible verb so the tier never relies on color alone. */
   stance:
@@ -64,6 +99,10 @@ export const skillCategories: SkillCategory[] = [
       { name: "Machine Learning" },
       { name: "Deep Learning", featured: true },
       { name: "PyTorch", icon: "pytorch", featured: true },
+      { name: "Hugging Face", icon: "huggingface" },
+      { name: "Jupyter", icon: "jupyter" },
+      { name: "Google Colab", icon: "googlecolab" },
+      { name: "Kaggle", icon: "kaggle" },
       { name: "Model Evaluation" },
       { name: "Model Optimization" },
     ],
@@ -79,10 +118,13 @@ export const skillCategories: SkillCategory[] = [
       { name: "Computer Vision", featured: true },
       { name: "Image Classification" },
       { name: "Object Detection" },
+      { name: "Image Segmentation" },
       { name: "Image Processing" },
+      { name: "Data Augmentation" },
       { name: "Vision Transformers", featured: true },
       { name: "CNNs" },
       { name: "OpenCV", icon: "opencv" },
+      { name: "YOLO (Ultralytics)", icon: "ultralytics" },
       { name: "Efficient Vision Models" },
       { name: "Edge AI" },
     ],
@@ -128,11 +170,11 @@ export const skillCategories: SkillCategory[] = [
     tier: "primary",
     description: "Building scalable production systems — the foundation everything else runs on.",
     skills: [
-      { name: "JavaScript", icon: "javascript" },
       { name: "TypeScript", icon: "typescript", featured: true },
-      { name: "System Design" },
-      { name: "Software Architecture" },
-      { name: "Web Application Development" },
+      { name: "JavaScript", icon: "javascript" },
+      { name: "Python", icon: "python", featured: true },
+      { name: "Software Architecture", glyph: "layers" },
+      { name: "Web Application Development", glyph: "app-window" },
     ],
   },
   // The four below sit under Software Engineering in the owner's priority order.
@@ -146,10 +188,10 @@ export const skillCategories: SkillCategory[] = [
       { name: "Node.js", icon: "nodedotjs", featured: true },
       { name: "NestJS", icon: "nestjs", featured: true },
       { name: "Express.js", icon: "express" },
-      { name: "REST APIs" },
-      { name: "API Design" },
-      { name: "Backend Development" },
-      { name: "Microservices" },
+      { name: "REST APIs", glyph: "exchange" },
+      { name: "API Design", glyph: "braces" },
+      { name: "Backend Development", glyph: "server" },
+      { name: "Microservices", glyph: "boxes" },
     ],
   },
   {
@@ -157,16 +199,20 @@ export const skillCategories: SkillCategory[] = [
     title: "Database & Data",
     stance: "Working with",
     tier: "secondary",
-    description: "Modeling and storing data for production applications.",
+    description: "Modeling, storing and visualizing data for production applications.",
     skills: [
       { name: "PostgreSQL", icon: "postgresql" },
       { name: "MySQL", icon: "mysql" },
       { name: "MongoDB", icon: "mongodb" },
-      { name: "SQL" },
-      { name: "Database Design" },
-      { name: "Data Modeling" },
+      { name: "SQL", glyph: "query" },
+      { name: "Database Design", glyph: "database" },
+      { name: "Data Modeling", glyph: "schema" },
+      { name: "Tableau", glyph: "chart" }, // no Simple Icons logo
+      { name: "Power BI", glyph: "chart" }, // no Simple Icons logo (Microsoft)
     ],
   },
+  // Hidden by owner request — uncomment to restore (also the link below + placement in skills-ecosystem.tsx).
+  /*
   {
     id: "frontend",
     title: "Frontend",
@@ -181,6 +227,7 @@ export const skillCategories: SkillCategory[] = [
       { name: "Responsive Web Design" },
     ],
   },
+  */
   {
     id: "tools",
     title: "Tools & Engineering",
@@ -193,10 +240,12 @@ export const skillCategories: SkillCategory[] = [
       { name: "GitHub", icon: "github" },
       { name: "Linux", icon: "linux" },
       { name: "Docker", icon: "docker" },
+      { name: "Postman", icon: "postman" },
       { name: "Vercel", icon: "vercel" },
-      { name: "CI/CD" },
+      { name: "CI/CD", glyph: "pipeline" },
       { name: "Claude Code", icon: "claudecode" },
-      { name: "VS Code" }, // Microsoft logos are not in Simple Icons
+      { name: "Ollama", icon: "ollama" },
+      { name: "VS Code", glyph: "editor" }, // generic glyph: Microsoft logos are not in Simple Icons
     ],
   },
 ];
@@ -217,7 +266,7 @@ export const skillLinks: [string, string][] = [
   [DIRECTION_ID, "software-engineering"],
   ["software-engineering", "backend"],
   ["software-engineering", "data"],
-  ["software-engineering", "frontend"],
+  // ["software-engineering", "frontend"], // Frontend hidden — see above
   ["software-engineering", "tools"],
   ["backend", "data"],
 ];

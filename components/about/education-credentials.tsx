@@ -1,11 +1,11 @@
-import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/animations/reveal";
 import { Section } from "@/components/layout/section";
 import { SectionHeader } from "@/components/layout/section-header";
 import { credentialsCopy } from "@/content/about";
-import { certifications, education } from "@/content/credentials";
+import { certificationGroups, certifications, education } from "@/content/credentials";
+import { CertificationBrowser } from "./certification-browser";
 
-/** Education and certifications as two quiet columns — part of the story, not a resume dump. */
+/** Education, then certifications as a spotlight + capability index — part of the story, not a resume dump. */
 export function EducationCredentials() {
   return (
     <Section aria-labelledby="education-title">
@@ -17,7 +17,7 @@ export function EducationCredentials() {
         intro={credentialsCopy.intro}
       />
 
-      <div className="mt-14 grid gap-14 md:mt-20 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
+      <div className="mt-14 grid gap-14 md:mt-20 lg:grid-cols-12 lg:gap-8">
         <Reveal className="lg:col-span-5 lg:col-start-4">
           <section aria-labelledby="education-list-title">
             <h3 id="education-list-title" className="label-mono text-muted-foreground">
@@ -41,52 +41,26 @@ export function EducationCredentials() {
             </ul>
           </section>
         </Reveal>
+      </div>
 
-        <Reveal delay={0.1} className="lg:col-span-4">
+      {certifications.length > 0 && (
+        <Reveal className="mt-20 md:mt-28">
           <section aria-labelledby="certifications-title">
-            <h3 id="certifications-title" className="label-mono text-muted-foreground">
+            <h3
+              id="certifications-title"
+              className="label-mono flex items-center gap-3 text-muted-foreground"
+            >
               Courses & certifications
+              <span className="text-foreground/40">
+                {String(certifications.length).padStart(2, "0")}
+              </span>
             </h3>
-            <ul className="mt-6">
-              {certifications.map((cert) => (
-                <li key={cert.name} className="border-t pt-6">
-                  <p className="font-display text-xl leading-snug font-semibold tracking-tight sm:text-2xl">
-                    {cert.name}
-                  </p>
-                  <p className="mt-2 text-muted-foreground">
-                    {cert.provider}
-                    {cert.partner && <> · {cert.partner}</>}
-                  </p>
-                  <dl className="label-mono mt-5 grid grid-cols-[auto_1fr] gap-x-4 gap-y-2">
-                    <dt className="text-foreground/40">Issued</dt>
-                    <dd className="text-muted-foreground">
-                      <time dateTime={cert.issuedIso}>{cert.issued}</time>
-                    </dd>
-                    {cert.credentialId && (
-                      <>
-                        <dt className="text-foreground/40">Credential</dt>
-                        <dd className="break-all text-muted-foreground">{cert.credentialId}</dd>
-                      </>
-                    )}
-                  </dl>
-                  {cert.url && (
-                    <a
-                      href={cert.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="mt-4 inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold transition-colors hover:text-accent"
-                    >
-                      Verify credential
-                      <ArrowUpRight aria-hidden className="size-4" />
-                      <span className="sr-only">: {cert.name}</span>
-                    </a>
-                  )}
-                </li>
-              ))}
-            </ul>
+            <div className="mt-2">
+              <CertificationBrowser groups={certificationGroups()} />
+            </div>
           </section>
         </Reveal>
-      </div>
+      )}
     </Section>
   );
 }

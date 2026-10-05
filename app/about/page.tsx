@@ -9,7 +9,7 @@ import { ResearchFocus } from "@/components/about/research-focus";
 import { WorkingPrinciples } from "@/components/about/working-principles";
 import { ContactCta } from "@/components/contact/contact-cta";
 import { aboutCta, aboutMeta, researchInterests } from "@/content/about";
-import { education } from "@/content/credentials";
+import { certifications, education } from "@/content/credentials";
 import { activeSocialLinks, profile } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -37,6 +37,14 @@ const jsonLd = {
     url: profile.url,
     alumniOf: education.map((e) => ({ "@type": "CollegeOrUniversity", name: e.institution })),
     knowsAbout: researchInterests,
+    hasCredential: certifications.map((c) => ({
+      "@type": "EducationalOccupationalCredential",
+      name: c.name,
+      credentialCategory: "certificate",
+      recognizedBy: { "@type": "Organization", name: c.partner ?? c.provider },
+      dateCreated: c.issuedIso,
+      ...(c.url && { url: c.url }),
+    })),
     sameAs: activeSocialLinks.map((l) => l.href),
   },
 };

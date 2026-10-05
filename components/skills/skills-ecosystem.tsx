@@ -10,7 +10,7 @@ import { SkillsGraph, type GraphNode } from "./skills-graph";
  *   [ CV ]  [ Multimodal ] [ Research ]
  *   [    ]  [ research direction      ]
  *        [ Software Engineering ]
- *   [ Backend ] [ Database ] [ Frontend ] [ Tools ]   ← owner's priority order
+ *   [ Backend ] [ Database ] [ Tools ]   ← owner's priority order (Frontend hidden for now)
  * md–lg: 2 columns (four children are too narrow below 1280px). Mobile: one column on a dashed spine.
  */
 const placement: Record<string, string> = {
@@ -20,10 +20,10 @@ const placement: Record<string, string> = {
   research: "md:col-span-2 xl:col-span-3",
   [DIRECTION_ID]: "md:col-span-2 xl:col-span-7 xl:col-start-6",
   "software-engineering": "md:col-span-2 xl:col-span-8 xl:col-start-3",
-  backend: "xl:col-span-3",
-  data: "xl:col-span-3",
-  frontend: "xl:col-span-3",
-  tools: "xl:col-span-3",
+  backend: "xl:col-span-4",
+  data: "xl:col-span-4",
+  // frontend: "xl:col-span-3", // hidden — see content/skills.ts
+  tools: "md:col-span-2 xl:col-span-4",
 };
 
 /** The /skills ecosystem: server-rendered cards handed to the client graph as slots. */

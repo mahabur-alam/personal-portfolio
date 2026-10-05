@@ -191,7 +191,7 @@ notebook utility; Work does not.
 
 **Skills (`/skills`).** 8 categories in `content/skills.ts`, laid out AI-first (owner's sketch): AI/ML → Computer
 Vision · Multimodal AI · AI Research (+ research-direction strip) → Software Engineering (foundation) → Backend ·
-Database & Data · Frontend · Tools (owner's priority order; Backend is the main engineering focus and primary tier).
+Database & Data · Tools (Frontend hidden for now — commented out in `content/skills.ts`; owner's priority order; Backend is the main engineering focus and primary tier).
 Cards are numbered in visual order. Hierarchy comes from `tier` (primary / secondary / emerging →
 size, frame, the emerging ones get `.bg-grid`) and a visible neutral `stance` label ("Focused on", "Exploring"…) —
 never percentages, bars, levels or "expert". `skillLinks` drives both the traces and hover emphasis. The research
@@ -204,7 +204,9 @@ are numbered in visual order on the 3|9 rail (`SectionHeader`). The hero holds t
 `About / 05`, nav order) and a trajectory chain (Software Eng → AI Eng → CV → AI Research). Then: 01 Journey (a
 scroll-drawn line, the only new client leaf `journey-progress.tsx`) · 02 Experience · 03 Research & AI (`.bg-grid`
 notebook: ongoing lines with `StatusBadge`, interests, a status legend and publications only when real) ·
-04 Education & learning · 05 Built along the way (evidence, links into /work) · 06 Currently exploring (now / next /
+04 Education & learning (education, then a certifications spotlight: `certification-browser.tsx` client leaf —
+CSS-transition coverflow with connector lines + a capability-grouped index in /skills order, sharing the active
+item; images in `public/certificates/<id>.jpg`, typographic fallback card without one) · 05 Built along the way (evidence, links into /work) · 06 Currently exploring (now / next /
 horizon + current status strip) · 07 How I work · 08 `ContactCta` (props: `index`, `intro`, `secondary`). Unknown
 facts (employer, dates, degree…) are `null` with `TODO(content)` and simply not rendered — no visible placeholders.
 The page emits `ProfilePage` → `Person` JSON-LD from verified fields only.
@@ -320,6 +322,8 @@ Before adding anything: does the stack already solve it? Is it lightweight? Does
   exception: the small `Bot` icon on the Back-to-Top button (§6) — UI glyph only, never a visual/illustration.
 - No logo walls for skills; organize by capability. Small monochrome Simple Icons (CC0 paths copied from the pinned
   `simple-icons` package into `tech-icon.tsx`, never hand-drawn) are allowed inside capability-grouped skill chips.
+  Concept skills (no brand exists, e.g. REST APIs, Microservices) may use a generic lucide glyph via `ConceptIcon` /
+  `Skill.glyph` — never a fake logo.
 - No GSAP for simple animations; no Three.js for cards/buttons/backgrounds.
 - No global state library, CMS, database or backend unless a real need appears (contact form excepted).
 - No hardcoded colors; no hype copy; no invented facts.

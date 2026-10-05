@@ -1,6 +1,6 @@
 import type { Skill } from "@/content/skills";
 import { cn } from "@/lib/utils";
-import { TechIcon } from "./tech-icon";
+import { ConceptIcon, TechIcon } from "./tech-icon";
 
 type SkillChipProps = {
   skill: Skill;
@@ -13,6 +13,10 @@ type SkillChipProps = {
  * Reacts to the parent card's `group/card` active state (skills-graph.tsx).
  */
 export function SkillChip({ skill, index }: SkillChipProps) {
+  const iconClass = cn(
+    "transition-[translate,color] duration-300 ease-out-expo group-data-[active=true]/card:-translate-y-px group-data-[active=true]/card:text-accent",
+    skill.featured && "text-accent",
+  );
   return (
     <span
       style={{ transitionDelay: `${index * 20}ms` }}
@@ -24,14 +28,10 @@ export function SkillChip({ skill, index }: SkillChipProps) {
         "group-data-[active=true]/card:border-foreground/30",
       )}
     >
-      {skill.icon && (
-        <TechIcon
-          icon={skill.icon}
-          className={cn(
-            "transition-[translate,color] duration-300 ease-out-expo group-data-[active=true]/card:-translate-y-px group-data-[active=true]/card:text-accent",
-            skill.featured && "text-accent",
-          )}
-        />
+      {skill.icon ? (
+        <TechIcon icon={skill.icon} className={iconClass} />
+      ) : (
+        skill.glyph && <ConceptIcon glyph={skill.glyph} className={iconClass} />
       )}
       {skill.name}
     </span>
